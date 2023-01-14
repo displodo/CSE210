@@ -22,7 +22,7 @@ class Program
         int length = (numbers.Count);
         int count = -1;
 
-        numbers.Remove(numbers[length - 1]);
+        numbers.Remove(numbers[length-1]);
         numbers.Sort();
         Console.WriteLine(length);
         Console.Write("Here is your sorted list: ");
