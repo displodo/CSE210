@@ -57,7 +57,7 @@ static void DisplayResume(Resume newResume)
             Console.WriteLine($"Job Title: {item._jobTitle}");
             Console.WriteLine($"Start Year: {item._startYear}");
             Console.WriteLine($"End Year: {item._endYear}");
-            Console.WriteLine("");5
+            Console.WriteLine("");
         }
 
     }
