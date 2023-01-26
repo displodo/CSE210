@@ -31,8 +31,8 @@ class Program
                 }
                 else
                 {
-                    newScripture._scriptRef = " ";
-                    newScripture._scriptSum = " ";
+                    newScripture._scriptRef = "";
+                    newScripture._scriptSum = "";
                 }
                 newJournal = Entry.CreateEntry(journalName, newJournal, newScripture);
 
@@ -95,19 +95,24 @@ public class Journal
     public static void DisplayEntries(Journal newJournal) 
     {
         Console.WriteLine("");
-        Console.WriteLine(newJournal._journalName);
+        Console.WriteLine($"Journal Name/File Name: {newJournal._journalName}");
         foreach (var entry in newJournal._entrys)
         { 
             Console.WriteLine("");
             Console.WriteLine(entry._dateAndTime);
-            Console.WriteLine(entry._prompt);
-            Console.WriteLine(entry._journalInput);
+            Console.WriteLine($"Prompt: {entry._prompt}");
+            Console.WriteLine($"Response: {entry._journalInput}");
+            if(entry._scripture._scriptRef != "")
+            {
+                Console.WriteLine("");
+                Console.WriteLine($"Scripture Refference: {entry._scripture._scriptRef}");
+                Console.WriteLine($"    Summary: {entry._scripture._scriptSum}");
+            }
+            
             Console.WriteLine("");
-            Console.WriteLine(entry._scripture._scriptRef);
-            Console.WriteLine(entry._scripture._scriptSum);
-            Console.Write("");
             Console.Write("Next Entry: ");
             Console.ReadLine();
+            Console.WriteLine();
         }
     }
         public static Journal ReadFile(string filename)
@@ -159,11 +164,12 @@ public class Entry
             Entry newEntry = new Entry();
             newEntry._dateAndTime = GetDateAndTime();
             GetPrompt prompt = new GetPrompt();
-            newEntry._prompt = prompt._newPrompt;
+            newEntry._prompt = GetPrompt.GetNewPrompt();
             Console.WriteLine($"Prompt: {newEntry._prompt}");
             Console.WriteLine("Write Journal entry here");
             Console.Write(">");
             newEntry._journalInput = Console.ReadLine();
+            Console.WriteLine("");
             newEntry._scripture = newScripture;
 
             newJournal._journalName = journalName;
@@ -176,7 +182,7 @@ public class GetPrompt
 {
     public String _newPrompt = GetNewPrompt();
 
-    static String GetNewPrompt()
+    public static string GetNewPrompt()
     {
         List<string> prompts = new List<string>();
         prompts.Add("Who was the most interesting person I interacted with today?");
@@ -187,6 +193,7 @@ public class GetPrompt
         prompts.Add("Who do you wish you talked to today?");
         Random generator = new Random();
         int randomIndex = generator.Next(0,5);
+        Console.WriteLine();
         return(prompts[randomIndex]);
     }
 }
