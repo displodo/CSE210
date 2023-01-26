@@ -92,13 +92,12 @@ public class Journal
     public String _journalName = "";
     public List<Entry> _entrys = new List<Entry>();
 
-     public static void DisplayEntries(Journal newJournal) 
+    public static void DisplayEntries(Journal newJournal) 
     {
         Console.WriteLine("");
         Console.WriteLine(newJournal._journalName);
         foreach (var entry in newJournal._entrys)
-        {
-            
+        { 
             Console.WriteLine("");
             Console.WriteLine(entry._dateAndTime);
             Console.WriteLine(entry._prompt);
@@ -107,35 +106,37 @@ public class Journal
             Console.WriteLine(entry._scripture._scriptRef);
             Console.WriteLine(entry._scripture._scriptSum);
             Console.Write("");
+            Console.Write("Next Entry: ");
+            Console.ReadLine();
         }
     }
         public static Journal ReadFile(string filename)
-    {
-        Journal newJournal = new Journal();
-        int set = 1;
-        string journalLines = File.ReadAllText(filename);
-        string[] parts = journalLines.Split("\n");
-        int numberEntries = (parts.Length - 1) / 5;
-        newJournal._journalName = parts[0];
-        
-        foreach (int entry in Enumerable.Range(1, numberEntries))
         {
+            Journal newJournal = new Journal();
+            int set = 1;
+            string journalLines = File.ReadAllText(filename);
+            string[] parts = journalLines.Split("\n");
+            int numberEntries = (parts.Length - 1) / 5;
+            newJournal._journalName = parts[0];
             
-            if(entry >= 1)
+            foreach (int entry in Enumerable.Range(1, numberEntries))
             {
-                Entry newEntry = new Entry();
-                newEntry._dateAndTime = parts[set];
-                newEntry._prompt = parts[set + 1];
-                newEntry._journalInput = parts[set + 2];
-                newEntry._scripture._scriptRef = parts[set + 3];
-                newEntry._scripture._scriptSum = parts[set + 4];
-                newJournal._entrys.Add(newEntry);
-                set += 5;
+                
+                if(entry >= 1)
+                {
+                    Entry newEntry = new Entry();
+                    newEntry._dateAndTime = parts[set];
+                    newEntry._prompt = parts[set + 1];
+                    newEntry._journalInput = parts[set + 2];
+                    newEntry._scripture._scriptRef = parts[set + 3];
+                    newEntry._scripture._scriptSum = parts[set + 4];
+                    newJournal._entrys.Add(newEntry);
+                    set += 5;
+                }
+                
             }
-            
+            return(newJournal);
         }
-        return(newJournal);
-    }
 }
 
 public class Entry
