@@ -1,7 +1,7 @@
 class Verse
 {
-    List<string> _verse = new List<string>();
-    List<HideWord> _wordCount = new List<HideWord>();
+    private List<string> _verse = new List<string>();
+    private List<HideWord> _wordCount = new List<HideWord>();
     public void SetVerse(string verse)
     {
         List<string> newList = new List<string>();
