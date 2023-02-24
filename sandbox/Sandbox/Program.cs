@@ -1,21 +1,11 @@
 class Program {
     static void Main(string[] args) {
-        Person p = new Person();
-        Student s = new Student();
-        Console.WriteLine(p.GetName());
-        Console.WriteLine(s.GetName());
+        while(true){
+            var random = new Random();
+            int randomInt = random.Next(1, 4);
+            Console.WriteLine(randomInt);
+            Console.ReadLine();
+        }
     }
 }
 
-class Person
-{
-    public string GetName() 
-    {
-        return "JR";
-    }
-}
-
-class Student: Person
-{
-
-}
