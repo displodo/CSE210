@@ -28,44 +28,75 @@ class Program
         
             if(input == "1")
             {
-                CoinFlip coin = new CoinFlip(2);
+                int diceNumber = GetDiceNumber();
+                CoinFlip coin = new CoinFlip(2, diceNumber);
             }
-            if(input == "2")
+            else if(input == "2")
             {
-                D3 d3 = new D3(3);
+                int diceNumber = GetDiceNumber();
+                D3 d3 = new D3(3, diceNumber);
             }
-            if(input == "3")
+            else if(input == "3")
             {
-                D4 d4 = new D4(4);
+                int diceNumber = GetDiceNumber();
+                D4 d4 = new D4(4, diceNumber);
             }
-            if(input == "4")
+            else if(input == "4")
             {
-                D6 d6 = new D6(6);
+                int diceNumber = GetDiceNumber();
+                D6 d6 = new D6(6, diceNumber);
             }
-            if(input == "5")
+            else if(input == "5")
             {
-                D8 d8 = new D8(8);
+                int diceNumber = GetDiceNumber();
+                D8 d8 = new D8(8, diceNumber);
             }
-            if(input == "6")
+            else if(input == "6")
             {
-                D10 d10 = new D10(10);
+                int diceNumber = GetDiceNumber();
+                D10 d10 = new D10(10, diceNumber);
             }
-            if(input == "7")
+            else if(input == "7")
             {
-                D12 d12 = new D12(12);
+                int diceNumber = GetDiceNumber();
+                D12 d12 = new D12(12, diceNumber);
             }
-            if(input == "8")
+            else if(input == "8")
             {
-                D20 d20 = new D20(20);
+                int diceNumber = GetDiceNumber();
+                D20 d20 = new D20(20, diceNumber);
             }
-            if(input == "9")
+            else if(input == "9")
             {
-                Percentile percentile = new Percentile(100);
+                int diceNumber = GetDiceNumber();
+                Percentile percentile = new Percentile(100, diceNumber);
             }
-            if(input == "10")
+            else if(input == "10")
             {
                 quit = true;
             }
+            else
+            {
+                Console.WriteLine("Invalid input");
+                Console.WriteLine("Press enter to return to menu.");
+                Console.Write(">");
+                Console.ReadLine();
+            }
         }
+    }
+    static int GetDiceNumber()
+    {
+        Console.WriteLine("How many dice would you like to roll?");
+        Console.Write(">");
+        int numberDice = 0;
+        try{numberDice = int.Parse(Console.ReadLine());}
+        catch
+        {
+            Console.WriteLine("Invalid input.");
+            Console.WriteLine("Hit enter to return to to menu.");
+            Console.Write(">");
+            Console.ReadLine();
+        }
+        return numberDice;
     }
 }
